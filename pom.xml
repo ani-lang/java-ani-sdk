@@ -8,10 +8,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.anilang</groupId>
-    <artifactId>ani-sdk</artifactId>
+    <artifactId>anilang-sdk</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
-    <name>ani-sdk</name>
+    <name>anilang-sdk</name>
     <description>Java implementation of Ani SDK.</description>
     <url>https://github.com/anilang/java-ani-sdk</url>
     <organization>
