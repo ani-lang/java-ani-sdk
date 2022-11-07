@@ -10,7 +10,7 @@ Java implementation of Ani SDK.
 
 1. [Download the latest release](https://github.com/ani-lang/java-ani-sdk/releases) `anilang-sdk.jar`.
 2. Leave the `anilang-sdk.jar` on a folder. We'll call it `ANI_HOME`.
-3. Add in your `.zprofile` or `.bash_profile` the `ANI_HOME` path you choose and an alias:
+3. Add in your `.zprofile` or `.bash_profile` the `ANI_HOME` path you chose and an alias:
 
 ```
 export ANI_HOME=path/to/ani/home/anilang-sdk.jar
@@ -32,6 +32,7 @@ Anilang Version 0.3.0
 3. Run `$ani -v` to validate the upgraded version.
 
 ## Quick start
+Run `ani -h` for help.
 ```bash
 usage: Ani
  -c,--compile <file.ani>   Compile an Ani file.
