@@ -15,15 +15,12 @@ import org.apache.commons.cli.ParseException;
 /**
  * Command line client implementation for Ani SDK.
  *
+ * @todo add unit tests for the Client
+ * @body unit tests are missing
+ * @body will be empty for now but is a must.
  * @since 0.1.0
  */
 public final class Client {
-
-    /*
-     * @todo add unit tests for the Client
-     * @body unit tests are missing
-     * @body will be empty for now but is a must.
-     */
 
     /**
      * Ctor.
