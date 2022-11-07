@@ -33,10 +33,6 @@ public final class Client {
     /**
      * Main method.
      * <p>
-     * TODO move print options out of the Client
-     * too many sout's looks wrong
-     * lets move them to an object an make the Client configurable
-     * <p>
      * TODO SDK and Ani version must com from the pom itself.
      * get both versions from the pom.
      *
@@ -79,6 +75,11 @@ public final class Client {
         final CommandLineParser parser = new DefaultParser();
         try {
             final CommandLine line = parser.parse(options, args);
+            /* @checkstyle MethodBodyCommentsCheck (5 lines)
+             * TODO move print options out of the Client
+             * too many sout's looks wrong
+             * lets move them to an object an make the Client configurable
+             */
             if (line.hasOption(compile)) {
                 System.out.println("Compile not implemented.");
             }
