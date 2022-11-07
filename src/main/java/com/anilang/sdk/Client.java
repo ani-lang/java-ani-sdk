@@ -40,6 +40,13 @@ public final class Client {
      */
     @SuppressWarnings("PMD.SystemPrintln")
     public static void main(final String[] args) {
+        final Option run = Option.builder()
+            .argName("file.ani")
+            .desc("Run an Ani file.")
+            .option("r")
+            .longOpt("run")
+            .hasArg()
+            .build();
         final Option compile = Option.builder()
             .argName("file.ani")
             .desc("Compile an Ani file.")
@@ -47,6 +54,11 @@ public final class Client {
             .longOpt("compile")
             .hasArg()
             .build();
+        /* @checkstyle MethodBodyCommentsCheck (5 lines)
+         * TODO include syntax check for a directory
+         * validate syntax for all files in a directory
+         * for ani files only
+         */
         final Option syntax = Option.builder()
             .argName("file.ani")
             .desc("Verify syntax of an Ani file.")
@@ -66,7 +78,15 @@ public final class Client {
             .option("h")
             .longOpt("help")
             .build();
+        /* @checkstyle MethodBodyCommentsCheck (10 lines)
+         * TODO use decorator to apply options
+         * some options depend on each other like compile an run
+         * others not like version and help.
+         * Create decorators to run all the options over the same arg instead of expecting
+         * an arg per each option
+         */
         final Options options = new Options();
+        options.addOption(run);
         options.addOption(compile);
         options.addOption(syntax);
         options.addOption(version);
@@ -84,13 +104,21 @@ public final class Client {
                 System.out.println("Compile not implemented.");
             }
             if (line.hasOption(syntax)) {
-                System.out.println("Syntax not implemented.");
+                final String value = line.getOptionValue(syntax).trim();
+                new HandleExceptions(
+                    new SyntaxOption(
+                        value
+                    )
+                ).run();
             }
             if (line.hasOption(version)) {
                 System.out.println("Java Ani SDK Version 0.1.0");
                 System.out.println("Anilang Version 0.3.0");
             }
             if (line.hasOption(help)) {
+                printHelp(options, formatter);
+            }
+            if (line.getOptions().length == 0) {
                 printHelp(options, formatter);
             }
         } catch (final ParseException exp) {
