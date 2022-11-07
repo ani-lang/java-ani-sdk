@@ -20,9 +20,9 @@ import org.apache.commons.cli.ParseException;
 public final class Client {
 
     /*
-    @todo add unit tests for the Client
-    @body unit tests are missing
-    @body will be empty for now but is a must.
+     * @todo add unit tests for the Client
+     * @body unit tests are missing
+     * @body will be empty for now but is a must.
      */
 
     /**
