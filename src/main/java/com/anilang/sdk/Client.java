@@ -15,9 +15,6 @@ import org.apache.commons.cli.ParseException;
 /**
  * Command line client implementation for Ani SDK.
  *
- * @todo add unit tests for the Client
- * @body unit tests are missing
- * @body will be empty for now but is a must.
  * @since 0.1.0
  */
 public final class Client {
@@ -69,11 +66,6 @@ public final class Client {
         options.addOption(help);
         final HelpFormatter formatter = new HelpFormatter();
         final CommandLineParser parser = new DefaultParser();
-        /*
-        @todo move print options out of the Client
-        @body too many sout's looks wrong
-        @body lets move them to an object an make the Client configurable
-         */
         try {
             final CommandLine line = parser.parse(options, args);
             if (line.hasOption(compile)) {
@@ -83,10 +75,6 @@ public final class Client {
                 System.out.println("Syntax not implemented.");
             }
             if (line.hasOption(version)) {
-                /*
-                @todo SDK and Ani version must com from the pom itself.
-                @body get both versions from the pom.
-                 */
                 System.out.println("Java Ani SDK Version 0.1.0");
                 System.out.println("Anilang Version 0.3.0");
             }
