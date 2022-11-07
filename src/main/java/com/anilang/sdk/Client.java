@@ -14,6 +14,10 @@ import org.apache.commons.cli.ParseException;
 
 /**
  * Command line client implementation for Ani SDK.
+ * <p>
+ * TODO add unit tests for the Client
+ * unit tests are missing
+ * will be empty for now but is a must.
  *
  * @since 0.1.0
  */
@@ -28,6 +32,13 @@ public final class Client {
 
     /**
      * Main method.
+     * <p>
+     * TODO move print options out of the Client
+     * too many sout's looks wrong
+     * lets move them to an object an make the Client configurable
+     * <p>
+     * TODO SDK and Ani version must com from the pom itself.
+     * get both versions from the pom.
      *
      * @param args Client input.
      */
