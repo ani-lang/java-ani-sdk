@@ -50,7 +50,13 @@
         <dependency>
             <groupId>com.github.ani-lang</groupId>
             <artifactId>anilang-core</artifactId>
-            <version>0.3.0</version>
+            <version>0.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
@@ -103,6 +109,12 @@
                         <artifactId>qulice-maven-plugin</artifactId>
                         <version>0.22.0</version>
                         <configuration>
+                            <excludes combine.children="append">
+                                <exclude>checkstyle:/src/test/resources/.*</exclude>
+                                <exclude>pmd:.*/src/test/resources/.*</exclude>
+                                <exclude>dependencies:org.junit.jupiter</exclude>
+                                <exclude>dependencies:com.github.ani-lang</exclude>
+                            </excludes>
                             <license>file:${basedir}/LICENSE.txt</license>
                         </configuration>
                     </plugin>
