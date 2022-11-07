@@ -81,7 +81,7 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
-                            <finalName>${name}-${version}</finalName>
+                            <finalName>${project.name}-${project.version}</finalName>
                             <archive>
                                 <manifest>
                                     <mainClass>
