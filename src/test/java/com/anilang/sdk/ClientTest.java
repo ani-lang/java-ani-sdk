@@ -48,7 +48,7 @@ class ClientTest extends BaseConsoleOutputTest {
         Client.main(new String[]{"-v"});
         Assertions.assertEquals(
             0,
-            outContext.toString().indexOf("Java Ani SDK Version")
+            outContext.toString().indexOf("Ani SDK Version (Java)")
         );
     }
 
