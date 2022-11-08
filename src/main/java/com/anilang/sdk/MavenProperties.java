@@ -28,7 +28,7 @@ public final class MavenProperties {
     /**
      * Version of ani lang core.
      *
-     * @return string version.
+     * @return String version.
      */
     public String aniCoreVersion() {
         return this.properties.getProperty("ani.core.version");
@@ -37,7 +37,7 @@ public final class MavenProperties {
     /**
      * Version of ani sdk.
      *
-     * @return string version.
+     * @return String version.
      */
     public String aniSdkVersion() {
         return this.properties.getProperty("ani.sdk.version");

@@ -8,7 +8,6 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
@@ -33,44 +32,7 @@ public final class Client {
      */
     @SuppressWarnings("PMD.SystemPrintln")
     public static void main(final String[] args) {
-        final Option run = Option.builder()
-            .argName("file.ani")
-            .desc("Run an Ani file.")
-            .option("r")
-            .longOpt("run")
-            .hasArg()
-            .build();
-        final Option compile = Option.builder()
-            .argName("file.ani")
-            .desc("Compile an Ani file.")
-            .option("c")
-            .longOpt("compile")
-            .hasArg()
-            .build();
-        /* @checkstyle MethodBodyCommentsCheck (5 lines)
-         * TODO include syntax check for a directory
-         * validate syntax for all files in a directory
-         * for ani files only
-         */
-        final Option syntax = Option.builder()
-            .argName("file.ani")
-            .desc("Verify syntax of an Ani file.")
-            .option("s")
-            .longOpt("syntax")
-            .hasArg()
-            .build();
-        final Option version = Option.builder()
-            .argName("version")
-            .desc("Version of the SDK and Ani.")
-            .option("v")
-            .longOpt("version")
-            .build();
-        final Option help = Option.builder()
-            .argName("help")
-            .desc("Ani SDK usage.")
-            .option("h")
-            .longOpt("help")
-            .build();
+        final AniOptions sdk = new AniOptions();
         /* @checkstyle MethodBodyCommentsCheck (10 lines)
          * TODO use decorator to apply options
          * some options depend on each other like compile an run
@@ -79,16 +41,16 @@ public final class Client {
          * an arg per each option
          */
         final Options options = new Options();
-        options.addOption(run);
-        options.addOption(compile);
-        options.addOption(syntax);
-        options.addOption(version);
-        options.addOption(help);
+        options.addOption(sdk.run());
+        options.addOption(sdk.compile());
+        options.addOption(sdk.directory());
+        options.addOption(sdk.version());
+        options.addOption(sdk.help());
         final HelpFormatter formatter = new HelpFormatter();
         final CommandLineParser parser = new DefaultParser();
         try {
             final CommandLine line = parser.parse(options, args);
-            if (line.hasOption(run)) {
+            if (line.hasOption(sdk.run())) {
                 System.out.println("Run not implemented.");
             }
             /* @checkstyle MethodBodyCommentsCheck (5 lines)
@@ -96,23 +58,31 @@ public final class Client {
              * too many sout's looks wrong
              * lets move them to an object an make the Client configurable
              */
-            if (line.hasOption(compile)) {
+            if (line.hasOption(sdk.compile())) {
                 System.out.println("Compile not implemented.");
             }
-            if (line.hasOption(syntax)) {
-                final String value = line.getOptionValue(syntax).trim();
+            if (line.hasOption(sdk.syntax())) {
                 new HandleExceptions(
-                    new SyntaxOption(
-                        value
+                    new ScopedOption(
+                        new ResolveScope(
+                            line,
+                            sdk
+                        ),
+                        /* @checkstyle MethodBodyCommentsCheck (5 lines)
+                         * TODO Trim input object
+                         *  #20 create an object that trims the input.
+                         */
+                        line.getOptionValue(sdk.syntax()).trim(),
+                        SyntaxOption::new
                     )
                 ).run();
             }
-            if (line.hasOption(version)) {
+            if (line.hasOption(sdk.version())) {
                 new HandleExceptions(
                     new VersionOption()
                 ).run();
             }
-            if (line.hasOption(help)) {
+            if (line.hasOption(sdk.help())) {
                 printHelp(options, formatter);
             }
             if (line.getOptions().length == 0) {

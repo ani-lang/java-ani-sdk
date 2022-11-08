@@ -23,6 +23,7 @@ public final class VersionOption implements RunnableOption {
         this.properties = new MavenProperties();
     }
 
+    @SuppressWarnings("PMD.SystemPrintln")
     @Override
     public void run() {
         System.out.printf("Ani SDK Version (Java) %s%n", this.properties.aniSdkVersion());
