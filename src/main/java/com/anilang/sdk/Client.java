@@ -28,9 +28,6 @@ public final class Client {
 
     /**
      * Main method.
-     * <p>
-     * TODO SDK and Ani version must com from the pom itself.
-     * get both versions from the pom.
      *
      * @param args Client input.
      */
@@ -111,8 +108,9 @@ public final class Client {
                 ).run();
             }
             if (line.hasOption(version)) {
-                System.out.println("Java Ani SDK Version 0.1.0");
-                System.out.println("Anilang Version 0.3.0");
+                new HandleExceptions(
+                    new VersionOption()
+                ).run();
             }
             if (line.hasOption(help)) {
                 printHelp(options, formatter);
