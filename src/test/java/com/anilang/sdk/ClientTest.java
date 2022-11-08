@@ -44,6 +44,15 @@ class ClientTest extends BaseConsoleOutputTest {
     }
 
     @Test
+    void directoryOption() {
+        Client.main(new String[]{"-d", "-s src/test/resources"});
+        Assertions.assertEquals(
+            0,
+            outContext.toString().indexOf("Running under directory: src/test/resources")
+        );
+    }
+
+    @Test
     void versionOption() {
         Client.main(new String[]{"-v"});
         Assertions.assertEquals(

@@ -32,13 +32,13 @@ public final class LoadMavenProperties {
     /**
      * Load properties to use.
      *
-     * @return properties loaded.
+     * @return Properties loaded.
      */
     public Properties load() {
-        final InputStream is = this.getClass().getResourceAsStream(this.file);
+        final InputStream input = this.getClass().getResourceAsStream(this.file);
         final Properties properties = new Properties();
         try {
-            properties.load(is);
+            properties.load(input);
         } catch (final IOException exception) {
             throw new AniSdkException("Internal error: Properties not found.", exception);
         }

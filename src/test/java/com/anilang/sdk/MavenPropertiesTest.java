@@ -24,14 +24,14 @@ class MavenPropertiesTest {
     @Test
     void nonNullAniCoreVersion() {
         Assertions.assertNotNull(
-            properties.aniCoreVersion()
+            this.properties.aniCoreVersion()
         );
     }
 
     @Test
     void nonNullAniSdkVersion() {
         Assertions.assertNotNull(
-            properties.aniSdkVersion()
+            this.properties.aniSdkVersion()
         );
     }
 }
