@@ -14,10 +14,6 @@ import org.apache.commons.cli.ParseException;
 
 /**
  * Command line client implementation for Ani SDK.
- * <p>
- * TODO add unit tests for the Client
- * unit tests are missing
- * will be empty for now but is a must.
  *
  * @since 0.1.0
  */
@@ -95,6 +91,9 @@ public final class Client {
         final CommandLineParser parser = new DefaultParser();
         try {
             final CommandLine line = parser.parse(options, args);
+            if (line.hasOption(run)) {
+                System.out.println("Run not implemented.");
+            }
             /* @checkstyle MethodBodyCommentsCheck (5 lines)
              * TODO move print options out of the Client
              * too many sout's looks wrong
