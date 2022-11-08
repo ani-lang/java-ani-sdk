@@ -1,5 +1,4 @@
 /*
-/*
  * Property of Opencore
  */
 
@@ -20,10 +19,8 @@ import org.junit.jupiter.api.BeforeEach;
 class BaseConsoleOutputTest {
 
     // @checkstyle JavadocMethodCheck (500 lines)
-    // @checkstyle StaticVariableNameCheck (500 lines)
-    // @checkstyle StaticAccessToStaticFields (500 lines)
-    // @checkstyle VisibilityModifierCheck (500 lines)
     // @checkstyle DeclarationOrderCheck (500 lines)
+    // @checkstyle VisibilityModifierCheck (500 lines)
 
     /**
      * The output stream.

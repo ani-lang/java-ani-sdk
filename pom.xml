@@ -37,8 +37,6 @@
         <url>https://github.com/anilang/core/issues</url>
     </issueManagement>
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
@@ -112,11 +110,17 @@
                             <excludes combine.children="append">
                                 <exclude>checkstyle:/src/test/resources/.*</exclude>
                                 <exclude>pmd:.*/src/test/resources/.*</exclude>
-                                <exclude>dependencies:org.junit.jupiter</exclude>
-                                <exclude>dependencies:com.github.ani-lang</exclude>
+                                <exclude>dependencies:.*</exclude>
                             </excludes>
                             <license>file:${basedir}/LICENSE.txt</license>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
