@@ -43,6 +43,7 @@ public final class Client {
         final Options options = new Options();
         options.addOption(sdk.run());
         options.addOption(sdk.compile());
+        options.addOption(sdk.syntax());
         options.addOption(sdk.directory());
         options.addOption(sdk.version());
         options.addOption(sdk.help());

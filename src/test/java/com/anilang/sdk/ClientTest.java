@@ -48,7 +48,7 @@ class ClientTest extends BaseConsoleOutputTest {
         Client.main(new String[]{"-d", "-s src/test/resources"});
         Assertions.assertEquals(
             0,
-            outContext.toString().indexOf("Syntax analysis over directory: src/test/resources")
+            outContext.toString().indexOf("Running under directory: src/test/resources")
         );
     }
 
