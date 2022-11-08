@@ -17,6 +17,24 @@ class ClientTest extends BaseConsoleOutputTest {
     // @checkstyle JavadocMethodCheck (500 lines)
 
     @Test
+    void runOption() {
+        Client.main(new String[]{"-r src/test/resources/invalid_Assignation.ani"});
+        Assertions.assertEquals(
+            0,
+            outContext.toString().indexOf("Run not implemented.")
+        );
+    }
+
+    @Test
+    void compileOption() {
+        Client.main(new String[]{"-c src/test/resources/invalid_Assignation.ani"});
+        Assertions.assertEquals(
+            0,
+            outContext.toString().indexOf("Compile not implemented.")
+        );
+    }
+
+    @Test
     void syntaxOption() {
         Client.main(new String[]{"-s src/test/resources/invalid_Assignation.ani"});
         Assertions.assertEquals(
@@ -25,4 +43,31 @@ class ClientTest extends BaseConsoleOutputTest {
         );
     }
 
+    @Test
+    void versionOption() {
+        Client.main(new String[]{"-v"});
+        Assertions.assertEquals(
+            0,
+            outContext.toString().indexOf("Java Ani SDK Version")
+        );
+    }
+
+    @Test
+    void helpOption() {
+        Client.main(new String[]{"-h"});
+        Assertions.assertEquals(
+            0,
+            outContext.toString().indexOf("usage: Ani")
+        );
+    }
+
+    @Test
+    void nonOption() {
+        Client.main(new String[]{""});
+        Assertions.assertEquals(
+            0,
+            outContext.toString().indexOf("usage: Ani"),
+            "display help by default."
+        );
+    }
 }
