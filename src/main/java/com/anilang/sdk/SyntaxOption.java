@@ -25,25 +25,30 @@ public final class SyntaxOption implements RunnableOption {
     private final Path path;
 
     /**
+     * Print the lines to the output.
+     */
+    private final OutputLine out;
+
+    /**
      * Ctor.
      *
      * @param raw Raw path to the file.
      */
     public SyntaxOption(final String raw) {
         this.path = Paths.get(raw);
+        this.out = new OutputLine();
     }
 
-    @SuppressWarnings("PMD.SystemPrintln")
     @Override
     public void run() throws IOException {
-        System.out.printf("Syntax analysis over file: %s%n", this.path.getFileName());
+        this.out.print(String.format("Syntax analysis over file: %s", this.path.getFileName()));
         final AniFile file = new AniFile(Files.newInputStream(this.path));
         final List<ParseError> errors = file.errors();
         if (errors.isEmpty()) {
-            System.out.println("OK");
+            this.out.print("OK");
         } else {
             for (final ParseError error : errors) {
-                System.out.println(error.getError());
+                this.out.print(error.getError());
             }
         }
     }

@@ -17,16 +17,21 @@ public final class VersionOption implements RunnableOption {
     private final MavenProperties properties;
 
     /**
+     * Print the lines to the output.
+     */
+    private final OutputLine out;
+
+    /**
      * Ctor.
      */
     public VersionOption() {
         this.properties = new MavenProperties();
+        this.out = new OutputLine();
     }
 
-    @SuppressWarnings("PMD.SystemPrintln")
     @Override
     public void run() {
-        System.out.printf("Ani SDK Version (Java) %s%n", this.properties.aniSdkVersion());
-        System.out.printf("Anilang Version %s%n", this.properties.aniCoreVersion());
+        this.out.print(String.format("Ani SDK Version (Java) %s", this.properties.aniSdkVersion()));
+        this.out.print(String.format("Anilang Version %s", this.properties.aniCoreVersion()));
     }
 }
