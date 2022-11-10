@@ -18,7 +18,8 @@ class ClientTest extends BaseConsoleOutputTest {
 
     @Test
     void runOption() {
-        Client.main(new String[]{"-r src/test/resources/invalid_Assignation.ani"});
+        final String file = new ResourceOf("/invalid_assignation.ani").toString();
+        Client.main(new String[]{String.format("-r %s", file)});
         Assertions.assertEquals(
             0,
             outContext.toString().indexOf("Run not implemented.")
@@ -27,7 +28,8 @@ class ClientTest extends BaseConsoleOutputTest {
 
     @Test
     void compileOption() {
-        Client.main(new String[]{"-c src/test/resources/invalid_Assignation.ani"});
+        final String file = new ResourceOf("/invalid_assignation.ani").toString();
+        Client.main(new String[]{String.format("-c %s", file)});
         Assertions.assertEquals(
             0,
             outContext.toString().indexOf("Compile not implemented.")
@@ -36,10 +38,11 @@ class ClientTest extends BaseConsoleOutputTest {
 
     @Test
     void syntaxOption() {
-        Client.main(new String[]{"-s src/test/resources/invalid_Assignation.ani"});
+        final String file = new ResourceOf("/invalid_assignation.ani").toString();
+        Client.main(new String[]{String.format("-s %s", file)});
         Assertions.assertEquals(
             0,
-            outContext.toString().indexOf("Syntax analysis over file: invalid_Assignation.ani")
+            outContext.toString().indexOf("Syntax analysis over file: invalid_assignation.ani")
         );
     }
 
