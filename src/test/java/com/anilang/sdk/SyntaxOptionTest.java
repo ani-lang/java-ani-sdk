@@ -6,6 +6,7 @@ package com.anilang.sdk;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Objects;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,8 +22,9 @@ class SyntaxOptionTest extends BaseConsoleOutputTest {
 
     @Test
     void printErrors() throws IOException {
-        System.out.println(Paths.get("").toAbsolutePath());
-        new SyntaxOption("/src/test/resources/invalid_Assignation.ani").run();
+        String path = Objects.requireNonNull(this.getClass().getResource("/invalid_Assignation" +
+            ".ani")).getPath();
+        new SyntaxOption(path).run();
         Assertions.assertEquals(
             -1,
             outContext.toString().indexOf("OK")
@@ -31,8 +33,9 @@ class SyntaxOptionTest extends BaseConsoleOutputTest {
 
     @Test
     void noErrorsFound() throws IOException {
-        System.out.println(Paths.get("").toAbsolutePath());
-        new SyntaxOption("/src/test/resources/literal_Assignation.ani").run();
+        String path = Objects.requireNonNull(this.getClass().getResource("/literal_Assignation" +
+            ".ani")).getPath();
+        new SyntaxOption(path).run();
         Assertions.assertEquals(
             51,
             outContext.toString().indexOf("OK")
