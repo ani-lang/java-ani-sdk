@@ -23,8 +23,7 @@ class SyntaxOptionTest extends BaseConsoleOutputTest {
     @Test
     void printErrors() throws IOException {
         String path = Objects.requireNonNull(this.getClass().getResource(
-            "/invalid_Assignation" +
-            ".ani")).getPath();
+            "/invalid_assignation.ani")).getPath();
         new SyntaxOption(path).run();
         Assertions.assertEquals(
             -1,
@@ -35,8 +34,7 @@ class SyntaxOptionTest extends BaseConsoleOutputTest {
     @Test
     void noErrorsFound() throws IOException {
         String path = Objects.requireNonNull(this.getClass().getResource(
-            "/literal_Assignation" +
-            ".ani")).getPath();
+            "/literal_assignation.ani")).getPath();
         new SyntaxOption(path).run();
         Assertions.assertEquals(
             51,
