@@ -22,8 +22,8 @@ class SyntaxOptionTest extends BaseConsoleOutputTest {
 
     @Test
     void printErrors() throws IOException {
-        String path = Objects.requireNonNull(this.getClass().getClassLoader().getResource(
-            "invalid_Assignation" +
+        String path = Objects.requireNonNull(this.getClass().getResource(
+            "/invalid_Assignation" +
             ".ani")).getPath();
         new SyntaxOption(path).run();
         Assertions.assertEquals(
@@ -34,8 +34,8 @@ class SyntaxOptionTest extends BaseConsoleOutputTest {
 
     @Test
     void noErrorsFound() throws IOException {
-        String path = Objects.requireNonNull(this.getClass().getClassLoader().getResource(
-            "literal_Assignation" +
+        String path = Objects.requireNonNull(this.getClass().getResource(
+            "/literal_Assignation" +
             ".ani")).getPath();
         new SyntaxOption(path).run();
         Assertions.assertEquals(
