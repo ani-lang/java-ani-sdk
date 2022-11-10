@@ -20,7 +20,9 @@ class SyntaxOptionTest extends BaseConsoleOutputTest {
 
     @Test
     void printErrors() throws IOException {
-        new SyntaxOption("src/test/resources/invalid_Assignation.ani").run();
+        new SyntaxOption(
+            new ResourceOf("/invalid_assignation.ani").toString()
+        ).run();
         Assertions.assertEquals(
             -1,
             outContext.toString().indexOf("OK")
@@ -29,7 +31,9 @@ class SyntaxOptionTest extends BaseConsoleOutputTest {
 
     @Test
     void noErrorsFound() throws IOException {
-        new SyntaxOption("src/test/resources/literal_Assignation.ani").run();
+        new SyntaxOption(
+            new ResourceOf("/literal_assignation.ani").toString()
+        ).run();
         Assertions.assertEquals(
             51,
             outContext.toString().indexOf("OK")
