@@ -45,5 +45,5 @@ usage: Ani
 ## Contribute
 
 ````shell
-$ ./mvnw clean install
+$ ./mvnw clean package -Pqulice
 ````

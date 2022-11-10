@@ -29,6 +29,11 @@ public final class DirectoryOption implements RunnableOption {
     private final Path directory;
 
     /**
+     * Print the lines to the output.
+     */
+    private final OutputLine out;
+
+    /**
      * Ctor.
      *
      * @param raw Raw path.
@@ -37,12 +42,12 @@ public final class DirectoryOption implements RunnableOption {
     public DirectoryOption(final String raw, final Function<String, RunnableOption> runnable) {
         this.directory = Paths.get(raw);
         this.runnable = runnable;
+        this.out = new OutputLine();
     }
 
-    @SuppressWarnings("PMD.SystemPrintln")
     @Override
     public void run() throws IOException {
-        System.out.printf("Running under directory: %s%n", this.directory.toString());
+        this.out.print(String.format("Running under directory: %s", this.directory.toString()));
         try (Stream<Path> paths = Files.list(this.directory)) {
             paths.forEach(
                 path -> {

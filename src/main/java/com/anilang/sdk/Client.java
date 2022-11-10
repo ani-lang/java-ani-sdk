@@ -30,8 +30,9 @@ public final class Client {
      *
      * @param args Client input.
      */
-    @SuppressWarnings("PMD.SystemPrintln")
+    @SuppressWarnings("PMD.ProhibitPublicStaticMethods")
     public static void main(final String[] args) {
+        final OutputLine output = new OutputLine();
         final AniOptions sdk = new AniOptions();
         /* @checkstyle MethodBodyCommentsCheck (10 lines)
          * TODO use decorator to apply options
@@ -52,15 +53,10 @@ public final class Client {
         try {
             final CommandLine line = parser.parse(options, args);
             if (line.hasOption(sdk.run())) {
-                System.out.println("Run not implemented.");
+                output.print("Run not implemented.");
             }
-            /* @checkstyle MethodBodyCommentsCheck (5 lines)
-             * TODO move print options out of the Client
-             * too many sout's looks wrong
-             * lets move them to an object an make the Client configurable
-             */
             if (line.hasOption(sdk.compile())) {
-                System.out.println("Compile not implemented.");
+                output.print("Compile not implemented.");
             }
             if (line.hasOption(sdk.syntax())) {
                 new HandleExceptions(
@@ -90,7 +86,7 @@ public final class Client {
                 printHelp(options, formatter);
             }
         } catch (final ParseException exp) {
-            System.out.printf("Unexpected error: %s%n", exp.getMessage());
+            output.print(String.format("Unexpected error: %s", exp.getMessage()));
             printHelp(options, formatter);
         }
     }
