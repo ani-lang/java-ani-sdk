@@ -24,7 +24,7 @@ class DirectoryOptionTest extends BaseConsoleOutputTest {
             SyntaxOption::new
         ).run();
         Assertions.assertEquals(
-            0,
+            7,
             outContext.toString().indexOf("Running under directory: src/test/resources")
         );
     }

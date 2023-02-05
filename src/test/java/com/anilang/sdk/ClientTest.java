@@ -21,7 +21,7 @@ class ClientTest extends BaseConsoleOutputTest {
         final String file = new ResourceOf("/invalid_assignation.ani").toString();
         Client.main(new String[]{String.format("-r %s", file)});
         Assertions.assertEquals(
-            0,
+            7,
             outContext.toString().indexOf("Run not implemented.")
         );
     }
@@ -31,7 +31,7 @@ class ClientTest extends BaseConsoleOutputTest {
         final String file = new ResourceOf("/invalid_assignation.ani").toString();
         Client.main(new String[]{String.format("-c %s", file)});
         Assertions.assertEquals(
-            0,
+            7,
             outContext.toString().indexOf("Compile not implemented.")
         );
     }
@@ -41,7 +41,7 @@ class ClientTest extends BaseConsoleOutputTest {
         final String file = new ResourceOf("/invalid_assignation.ani").toString();
         Client.main(new String[]{String.format("-s %s", file)});
         Assertions.assertEquals(
-            0,
+            7,
             outContext.toString().indexOf("Syntax analysis over file: invalid_assignation.ani")
         );
     }
@@ -50,7 +50,7 @@ class ClientTest extends BaseConsoleOutputTest {
     void directoryOption() {
         Client.main(new String[]{"-d", "-s src/test/resources"});
         Assertions.assertEquals(
-            0,
+            7,
             outContext.toString().indexOf("Running under directory: src/test/resources")
         );
     }
@@ -59,7 +59,7 @@ class ClientTest extends BaseConsoleOutputTest {
     void versionOption() {
         Client.main(new String[]{"-v"});
         Assertions.assertEquals(
-            0,
+            7,
             outContext.toString().indexOf("Ani SDK Version (Java)")
         );
     }

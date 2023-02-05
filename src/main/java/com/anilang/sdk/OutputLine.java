@@ -31,6 +31,10 @@ public final class OutputLine {
      * @param message The message to print.
      */
     public void print(final String message) {
-        this.out.println(message);
+        this.out.println("[info] " + message);
+    }
+
+    public void err(final String message) {
+        this.out.println("[error] " + message);
     }
 }
