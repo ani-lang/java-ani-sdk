@@ -48,6 +48,7 @@ public final class Client {
         options.addOption(sdk.directory());
         options.addOption(sdk.version());
         options.addOption(sdk.help());
+        options.addOption(sdk.verify());
         final HelpFormatter formatter = new HelpFormatter();
         final CommandLineParser parser = new DefaultParser();
         try {
@@ -81,6 +82,18 @@ public final class Client {
             }
             if (line.hasOption(sdk.help())) {
                 printHelp(options, formatter);
+            }
+            if (line.hasOption(sdk.verify())) {
+                new HandleExceptions(
+                    new ScopedOption(
+                        new ResolveScope(
+                            line,
+                            sdk
+                        ),
+                        line.getOptionValue(sdk.verify()).trim(),
+                        VerifyOption::new
+                    )
+                ).run();
             }
             if (line.getOptions().length == 0) {
                 printHelp(options, formatter);

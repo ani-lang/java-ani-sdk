@@ -35,7 +35,7 @@ class SyntaxOptionTest extends BaseConsoleOutputTest {
             new ResourceOf("/literal_assignation.ani").toString()
         ).run();
         Assertions.assertEquals(
-            51,
+            65,
             outContext.toString().indexOf("OK")
         );
     }
