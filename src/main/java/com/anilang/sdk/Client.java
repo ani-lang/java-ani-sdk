@@ -48,7 +48,7 @@ public final class Client {
         options.addOption(sdk.directory());
         options.addOption(sdk.version());
         options.addOption(sdk.help());
-        options.addOption(sdk.verify());
+        options.addOption(sdk.context());
         final HelpFormatter formatter = new HelpFormatter();
         final CommandLineParser parser = new DefaultParser();
         try {
@@ -83,15 +83,15 @@ public final class Client {
             if (line.hasOption(sdk.help())) {
                 printHelp(options, formatter);
             }
-            if (line.hasOption(sdk.verify())) {
+            if (line.hasOption(sdk.context())) {
                 new HandleExceptions(
                     new ScopedOption(
                         new ResolveScope(
                             line,
                             sdk
                         ),
-                        line.getOptionValue(sdk.verify()).trim(),
-                        VerifyOption::new
+                        line.getOptionValue(sdk.context()).trim(),
+                        ContextOption::new
                     )
                 ).run();
             }
