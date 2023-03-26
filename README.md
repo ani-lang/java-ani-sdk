@@ -40,6 +40,7 @@ usage: Ani
  -r,--run <file.ani>       Run an Ani file.
  -s,--syntax <file.ani>    Verify syntax of an Ani file.
  -v,--version              Version of the SDK and Ani.
+ -x,--context <file.ani>   Verify code context consistency.
 ```
 
 ## Contribute

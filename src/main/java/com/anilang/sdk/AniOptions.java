@@ -49,7 +49,7 @@ public final class AniOptions {
     /**
      * Verify code consistency for declarations.
      */
-    private final Option verify;
+    private final Option context;
 
     /**
      * Ctor.
@@ -93,11 +93,11 @@ public final class AniOptions {
             .option("h")
             .longOpt("help")
             .build();
-        this.verify = Option.builder()
-            .argName("verify")
+        this.context = Option.builder()
+            .argName("file.ani")
             .desc("Verify code context consistency.")
-            .option("vy")
-            .longOpt("verify")
+            .option("x")
+            .longOpt("context")
             .hasArg()
             .build();
     }
@@ -161,7 +161,7 @@ public final class AniOptions {
      *
      * @return An option.
      */
-    public Option verify() {
-        return this.verify;
+    public Option context() {
+        return this.context;
     }
 }

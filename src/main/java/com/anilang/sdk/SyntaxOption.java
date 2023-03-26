@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Syntax validation option.
@@ -30,13 +31,33 @@ public final class SyntaxOption implements RunnableOption {
     private final OutputLine out;
 
     /**
+     * Error consumer.
+     */
+    private final Consumer<List<ParseError>> onErrors;
+
+    /**
      * Ctor.
      *
      * @param raw Raw path to the file.
      */
     public SyntaxOption(final String raw) {
+        this(
+            raw,
+            errors -> {
+                for (final ParseError error : errors) {
+                    new OutputLine().print(error.getError());
+                }
+            }
+        );
+    }
+
+    public SyntaxOption(
+        final String raw,
+        final Consumer<List<ParseError>> onErrors
+    ) {
         this.path = Paths.get(raw);
         this.out = new OutputLine();
+        this.onErrors = onErrors;
     }
 
     @Override
@@ -47,9 +68,7 @@ public final class SyntaxOption implements RunnableOption {
         if (errors.isEmpty()) {
             this.out.print("OK");
         } else {
-            for (final ParseError error : errors) {
-                this.out.print(error.getError());
-            }
+            this.onErrors.accept(errors);
         }
     }
 }
