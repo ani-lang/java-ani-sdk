@@ -38,7 +38,7 @@
     </issueManagement>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <ani.core.version>0.7.0</ani.core.version>
+        <ani.core.version>0.7.1</ani.core.version>
         <ani.sdk.version>${project.version}</ani.sdk.version>
     </properties>
     <dependencies>
