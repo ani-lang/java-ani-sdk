@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Property of Opencore
+  ~ Property of ani-lang project.
   -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -9,14 +9,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.anilang</groupId>
     <artifactId>anilang-sdk</artifactId>
-    <version>0.4.0</version>
+    <version>0.4.1</version>
     <packaging>jar</packaging>
     <name>anilang-sdk</name>
     <description>Java implementation of Ani SDK.</description>
     <url>https://github.com/anilang/java-ani-sdk</url>
     <organization>
-        <name>Opencore</name>
-        <url>http://opencore.cl</url>
+        <name>anilang</name>
+        <url>https://github.com/ani-lang</url>
     </organization>
     <developers>
         <developer>
@@ -38,7 +38,7 @@
     </issueManagement>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <ani.core.version>0.7.0</ani.core.version>
+        <ani.core.version>0.7.1</ani.core.version>
         <ani.sdk.version>${project.version}</ani.sdk.version>
     </properties>
     <dependencies>

@@ -1,16 +1,12 @@
 /*
- * Property of Opencore
+ * Property of ani-lang project.
  */
 
 package com.anilang.sdk;
 
 import com.anilang.context.AniContext;
+import com.anilang.context.analysis.FileAnalysisBuilder;
 import com.anilang.context.impl.BaseAniContext;
-import com.anilang.context.listener.IdentifierDeclarationListener;
-import com.anilang.context.listener.IdentifierUsageListener;
-import com.anilang.context.listener.IdentifierValidationListener;
-import com.anilang.context.listener.TypeDefinitionListener;
-import com.anilang.context.listener.TypeResolveListener;
 import com.anilang.parser.AniFile;
 import com.anilang.parser.ParseError;
 import com.anilang.parser.antlr.AniParser;
@@ -19,8 +15,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 public final class ContextOption implements RunnableOption {
 
@@ -55,37 +51,22 @@ public final class ContextOption implements RunnableOption {
         this.out.print(String.format("Context analysis over file: %s", this.path.getFileName()));
         final AniParser parser = new AniFile(Files.newInputStream(this.path)).parse();
         final AniContext context = new BaseAniContext();
-        ParseTreeWalker.DEFAULT.walk(
-            new IdentifierDeclarationListener(context),
-            parser.file()
-        );
-        parser.reset();
-        ParseTreeWalker.DEFAULT.walk(
-            new IdentifierUsageListener(context),
-            parser.file()
-        );
-        parser.reset();
-        ParseTreeWalker.DEFAULT.walk(
-            new IdentifierValidationListener(context, new OutputLineConsumer(this.out)),
-            parser.file()
-        );
-        parser.reset();
-        ParseTreeWalker.DEFAULT.walk(
-            new TypeDefinitionListener(context),
-            parser.file()
-        );
-        parser.reset();
-        ParseTreeWalker.DEFAULT.walk(
-            new TypeResolveListener(context),
-            parser.file()
-        );
+        new FileAnalysisBuilder(context, parser)
+            .analyzeDeclaration()
+            .analyzeUsageBuilder()
+            .analyzeIdentifierValidation(new OutputLineBiConsumer(this.out))
+            .analyzeTypeDefinition()
+            .analyzeTypeResolve()
+            .analyzeTypesValidation(new OutputLineConsumer(this.out))
+            .build()
+            .run();
         this.out.print("OK");
     }
 
-    private class OutputLineConsumer implements BiConsumer<ParserRuleContext, String> {
+    private class OutputLineBiConsumer implements BiConsumer<ParserRuleContext, String> {
         private final OutputLine out;
 
-        public OutputLineConsumer(final OutputLine out) {
+        public OutputLineBiConsumer(final OutputLine out) {
             this.out = out;
         }
 
@@ -99,6 +80,20 @@ public final class ContextOption implements RunnableOption {
                     ctx.getStart().getCharPositionInLine() + 1
                 )
             );
+            System.exit(1);
+        }
+    }
+
+    private class OutputLineConsumer implements Consumer<String> {
+        private final OutputLine out;
+
+        public OutputLineConsumer(final OutputLine out) {
+            this.out = out;
+        }
+
+        @Override
+        public void accept(final String error) {
+            this.out.err(error);
             System.exit(1);
         }
     }
