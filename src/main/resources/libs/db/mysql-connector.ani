@@ -1,0 +1,40 @@
+/*
+Results of running a query over mysql.
+*/
+class MySqlResult:
+
+end
+
+/*
+Database that uses mysql.
+*/
+class MySqlDatabase:
+    def read(string sql) -> MySqlResult:
+        return new MySqlResult()
+    end
+
+    def insert(string sql) -> MySqlResult:
+        return new MySqlResult()
+    end
+
+    def update(string sql) -> MySqlResult:
+        return new MySqlResult()
+    end
+
+    def delete(string sql) -> MySqlResult:
+        return new MySqlResult()
+    end
+end
+
+/*
+Connector for MySql databases.
+*/
+class MySqlConnector:
+
+    /*
+    Connects to a database.
+    */
+    def connect(string host, int port, string database) -> MySqlDatabase:
+        return new MySqlDatabase()
+    end
+end
