@@ -9,7 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.anilang</groupId>
     <artifactId>anilang-sdk</artifactId>
-    <version>0.4.1</version>
+    <version>0.5.0</version>
     <packaging>jar</packaging>
     <name>anilang-sdk</name>
     <description>Java implementation of Ani SDK.</description>
@@ -38,7 +38,7 @@
     </issueManagement>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <ani.core.version>0.7.1</ani.core.version>
+        <ani.core.version>0.8.0</ani.core.version>
         <ani.sdk.version>${project.version}</ani.sdk.version>
     </properties>
     <dependencies>
